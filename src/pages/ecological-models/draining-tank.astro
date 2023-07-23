@@ -32,6 +32,13 @@ import VariableItem from "@components/VariableItem.astro";
   <Ecuation ecuation="draining-tank" slot="graph">
     <InputNumber name="K" label="Decrecimiento de población" value="0.01" />
     <InputNumber name="Q0" label="Cantidad inicial" value="150" min="1" />
+    <InputNumber
+      name="T"
+      label="Tiempo máximo"
+      hideName={true}
+      value="320"
+      min="1"
+    />
   </Ecuation>
 
   <p slot="experiments">

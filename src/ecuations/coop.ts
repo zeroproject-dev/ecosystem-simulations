@@ -1,15 +1,14 @@
 import Plotly from "plotly.js-dist";
-
-const $ = (id: string) => document.getElementById(id) as HTMLInputElement
+import { $in } from "../lib/index"
 
 export function Coop() {
-  let q1 = parseFloat($('Q1').value);
-  let q2 = parseFloat($('Q2').value);
-  const k5 = 0.01 * parseFloat($('K1').value);
-  const k6 = 0.01 * parseFloat($('K2').value);
-  const k3 = 0.01 * parseFloat($('K3').value);
-  const k4 = 0.01 * parseFloat($('K4').value);
-  const maxTime = parseInt($("T").value);
+  let q1 = parseFloat($in('Q1').value);
+  let q2 = parseFloat($in('Q2').value);
+  const k5 = 0.01 * parseFloat($in('K1').value);
+  const k6 = 0.01 * parseFloat($in('K2').value);
+  const k3 = 0.01 * parseFloat($in('K3').value);
+  const k4 = 0.01 * parseFloat($in('K4').value);
+  const maxTime = parseInt($in("T").value);
 
   function draw() {
     let k1 = 0.08;

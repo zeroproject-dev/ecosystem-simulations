@@ -37,9 +37,16 @@ import VariableItem from "@components/VariableItem.astro";
     <InputNumber name="E0" label="Energia" value="17" />
     <InputNumber name="Q0" label="Población inicial" value="4" />
     <InputNumber name="K0" label="Factor decreciente" value="8" />
+    <InputNumber
+      name="T"
+      label="Tiempo máximo"
+      hideName={true}
+      value="320"
+      min="1"
+    />
   </Ecuation>
 
-  <p slot="experiments">Pensa en una población de ratones:</p>
+  <p slot="experiments">Piensa en una población de ratones:</p>
   <UList slot="experiments">
     <li>
       Si coloca muchos más ratones en la jaula al comienzo de su experimento,

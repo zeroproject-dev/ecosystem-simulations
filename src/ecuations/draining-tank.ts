@@ -1,54 +1,48 @@
-import Plotly from "plotly.js-dist";
+import { drawPlot, $in } from "src/lib";
 
-export function DrainingTank() {
-  const $k = document.getElementById("K") as HTMLInputElement;
-  const $q0 = document.getElementById("Q0") as HTMLInputElement;
+function calculateData() {
+  let K = parseFloat($in("K").value);
+  let Q0 = parseFloat($in("Q0").value);
+  const maxTime = parseInt(($in("T") as HTMLInputElement).value);
 
-  const draw = (K: number, Q: number) => {
-    let Q0 = Q;
+  let t = [];
+  let Q = [];
 
-    function calculateData() {
-      let data = [];
-      let t = [];
-      let Q = [];
+  let i = 0;
+  while (i <= maxTime) {
+    let DQ = -K * Q0;
+    Q0 = Q0 + DQ;
+    t.push(i++);
+    Q.push(Q0);
+  }
 
-      let i = 0;
-      while (Q0 > 1) {
-        let DQ = -K * Q0;
-        Q0 = Q0 + DQ;
-        t.push(i++);
-        Q.push(Q0);
-      }
-
-      data.push({
-        x: t,
-        y: Q,
-        type: "scatter",
-        mode: "lines",
-        name: "Drain Plot",
-        line: { color: "blue" },
-      });
-
-      return data;
-    }
-
-    let data = calculateData();
-
-    let layout = {
-      title: "Tanque de drenaje",
-      xaxis: {
-        title: "Tiempo (t)",
-        zeroline: false,
-      },
-      yaxis: {
-        title: "Nivel del liquido (Q)",
-        zeroline: false,
-      },
-    };
-
-    Plotly.newPlot("plot", data, layout, { responsive: true });
-    data = null;
+  const trace = {
+    x: t,
+    y: Q,
+    type: "scatter",
+    mode: "lines",
+    name: "Drain Plot",
+    line: { color: "blue" },
   };
 
-  draw(parseFloat($k.value), parseFloat($q0.value));
+  return [trace];
+}
+
+export function DrainingTank() {
+  let data = calculateData();
+
+  let layout = {
+    title: "Tanque de drenaje",
+    xaxis: {
+      title: "Tiempo (t)",
+      zeroline: false,
+    },
+    yaxis: {
+      title: "Nivel del liquido (Q)",
+      zeroline: false,
+    },
+  };
+
+  drawPlot({ data, layout });
+  data = null;
 }
