@@ -1,0 +1,59 @@
+---
+import EcuationLayout from "../../layouts/EcuationLayout.astro";
+import Ecuation from "@components/Ecuation.astro";
+import InputNumber from "@components/InputNumber.astro";
+import UList from "@components/UList.astro";
+import VariableItem from "@components/VariableItem.astro";
+---
+
+<EcuationLayout
+  title="Crecimiento logístico"
+  description=""
+  diagram="/img/logistic.gif"
+>
+  <p slot="description">
+    Si una población de microbios crece en una fuente de presión constante,
+    aumenta exponencialmente. Pero la tasa de mortalidad también aumenta debido
+    a más interacciones y hacinamiento, por lo que la población se nivela.
+    Cuando las muertes son iguales a los nacimientos, la población alcanza un
+    estado estacionario.
+  </p>
+
+  <UList slot="examples">
+    <li>Experimento con ratones de laboratorio.</li>
+    <li>Poblaciones de personas en las grandes ciudades.</li>
+  </UList>
+
+  <UList slot="variables">
+    <VariableItem v="E" desc="Fuente de energía a presíon constante" />
+    <VariableItem v="Q" desc="Cantidad almacenada (población)" />
+    <VariableItem v="K1" desc="Factor creciente" />
+    <VariableItem v="K4" desc="Factor decreciente" />
+  </UList>
+
+  <p slot="ecuations">DQ = K1*E*Q-K4*Q*Q</p>
+
+  <Ecuation ecuation="logistic-growth" slot="graph">
+    <InputNumber name="E0" value="17" />
+    <InputNumber name="Q0" value="4" />
+    <InputNumber name="K0" value="8" />
+  </Ecuation>
+
+  <p slot="experiments">Pensa en una población de ratones:</p>
+  <UList slot="experiments">
+    <li>
+      Si coloca muchos más ratones en la jaula al comienzo de su experimento,
+      ¿sobrevivirían todos o disminuiría la población?
+    </li>
+    <li>
+      Si probaras el experimento de los ratones con otra especie que fuera menos
+      sensible al hacinamiento, ¿qué variable cambiarías?
+    </li>
+  </UList>
+</EcuationLayout>
+
+<small slot="footer">
+  <a href="http://www.unicamp.br/fea/ortega/java/logistic.htm" target="_blank">
+    Página original
+  </a>
+</small>

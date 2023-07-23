@@ -1,0 +1,27 @@
+---
+interface Props {
+  ecuation: string;
+}
+
+const { ecuation } = Astro.props;
+---
+
+<div class="mt-4">
+  <form data-ecuation={ecuation} id="graph-form">
+    <slot />
+    <button class="mt-2 block border" type="submit">Graficar</button>
+  </form>
+  <div id="plot"></div>
+</div>
+
+<script>
+  import { show } from "../ecuations/index";
+  const $form = document.getElementById("graph-form") as HTMLFormElement;
+
+  $form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    show($form.getAttribute("data-ecuation"));
+  });
+
+  show($form.getAttribute("data-ecuation"));
+</script>

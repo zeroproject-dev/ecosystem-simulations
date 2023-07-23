@@ -1,0 +1,10 @@
+---
+interface Props {
+  v: string;
+  desc: string;
+}
+
+const { v, desc } = Astro.props;
+---
+
+<li><strong>{v}</strong> = {desc}</li>

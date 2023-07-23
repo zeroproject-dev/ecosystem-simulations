@@ -1,0 +1,67 @@
+---
+import EcuationLayout from "../../layouts/EcuationLayout.astro";
+import Ecuation from "@components/Ecuation.astro";
+import InputNumber from "@components/InputNumber.astro";
+import UList from "@components/UList.astro";
+import VariableItem from "@components/VariableItem.astro";
+---
+
+<EcuationLayout
+  title="Competencia de dos poblaciones en crecimiento exponencial"
+  description=""
+  diagram="/img/compete.gif"
+>
+  <p slot="description">
+    Dos poblaciones que crecen de la misma fuente ilimitada aumentan
+    exponencialmente. Pero, aunque no haya interacciones negativas, una de ellas
+    se volverá cada vez más dominante.
+  </p>
+
+  <UList slot="examples">
+    <li>
+      Las primeras etapas de crecimiento de los microorganismos en los
+      alimentos.
+    </li>
+    <li>El crecimiento de nuevas plantas cuando se abandona un campo.</li>
+  </UList>
+
+  <UList slot="variables">
+    <VariableItem v="E" desc="Fuente de energía" />
+    <VariableItem v="Q, Q2" desc="Dos poblaciones" />
+    <VariableItem v="K1, K2" desc="Tasas de crecimiento" />
+    <VariableItem v="K3, K4" desc="Tasas de mortalidad" />
+  </UList>
+
+  <p slot="ecuations">DQ1 = K1*E*Q-K3*Q</p>
+  <p slot="ecuations">DQ2 = K2*E*Q2-K4*Q2</p>
+
+  <Ecuation ecuation="compete" slot="graph">
+    <InputNumber name="Q1" value="3" />
+    <InputNumber name="Q2" value="3" />
+    <InputNumber name="K1" value="7" />
+    <InputNumber name="K2" value="8" />
+    <InputNumber name="K3" value="5" />
+    <InputNumber name="K4" value="5" />
+    <InputNumber name="T" label="Tiempo máximo" value="320" min="1" />
+    <div>
+      <label for="A">¿Modo Cuadrático?</label>
+      <input type="checkbox" name="A" id="A" />
+    </div>
+  </Ecuation>
+
+  <UList slot="experiments">
+    <li>
+      Si las dos poblaciones tienen el mismo número inicial de individuos, pero
+      la eficiencia de crecimiento es mayor en una que en la otra, la primera
+      aventaja a la otra muy rápidamente. ¿Puedes generar este resultado
+      aumentando el coeficiente de producción?
+    </li>
+    <li>¿Cuál es el efecto de la retroalimentación cuadrática?</li>
+  </UList>
+</EcuationLayout>
+
+<small slot="footer">
+  <a href="https://www.unicamp.br/fea/ortega/java/compete.htm" target="_blank">
+    Página original
+  </a>
+</small>

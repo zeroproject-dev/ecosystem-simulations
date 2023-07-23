@@ -1,0 +1,59 @@
+---
+import Section from "@components/Section.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  diagram: string;
+}
+
+const { title, description, diagram } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description || "Astro description"} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <main class="min-w-xs max-w-[90%] mx-auto mb-4 md:max-w-[1000px]">
+      <h1 class="text-4xl text-center font-bold mt-4">{title}</h1>
+      <div class="grid">
+        <Section title="Diagrama">
+          <div class="flex justify-center">
+            <img src={diagram} alt={title} />
+          </div>
+        </Section>
+        <Section title="Descripción">
+          <slot name="description" />
+        </Section>
+        <Section title="Ejemplos">
+          <slot name="examples" />
+        </Section>
+        <Section title="Variables">
+          <slot name="variables" />
+        </Section>
+        <Section title="Ecuaciones">
+          <slot name="ecuations" />
+        </Section>
+        <Section title="Simulación">
+          <p>
+            El gráfico muestra los cambios de Q durante un período de tiempo.
+          </p>
+        </Section>
+        <slot name="graph" />
+        <Section title="Experimentos 'Qué pasaría si'">
+          <slot name="experiments" />
+        </Section>
+      </div>
+    </main>
+    <footer>
+      <slot name="footer" />
+    </footer>
+  </body>
+</html>

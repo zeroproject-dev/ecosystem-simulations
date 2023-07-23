@@ -1,0 +1,24 @@
+---
+interface Props {
+  name: string;
+  value: string;
+  label: string | null;
+  min: string | null;
+  step: string | null;
+}
+
+const { name, value, label, min, step } = Astro.props;
+---
+
+<div>
+  <label for="" class="block"> {label || name}:</label>
+  <input
+    class="border"
+    type="number"
+    value={value}
+    min={min || "0.00001"}
+    step={step || min || ".00001"}
+    name={name}
+    id={name}
+  />
+</div>

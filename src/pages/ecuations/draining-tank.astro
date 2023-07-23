@@ -1,0 +1,56 @@
+---
+import EcuationLayout from "../../layouts/EcuationLayout.astro";
+import Ecuation from "@components/Ecuation.astro";
+import InputNumber from "@components/InputNumber.astro";
+import UList from "@components/UList.astro";
+import VariableItem from "@components/VariableItem.astro";
+---
+
+<EcuationLayout
+  title="Tanque de drenaje"
+  description=""
+  diagram="/img/compete.gif"
+>
+  <p slot="description">
+    Tenemos una cantidad almacenada de algo, como agua en un estanque temporal,
+    que se filtra en el suelo. A medida que disminuye la presión que lo impulsa,
+    el agua sale, rápidamente al principio y luego lentamente.
+  </p>
+
+  <UList slot="examples">
+    <li>El agua se difunde a través de la arena</li>
+    <li>Desintegración de la radiactividad de elementos como el uranio</li>
+  </UList>
+
+  <UList slot="variables">
+    <VariableItem v="Q" desc="Cantidad almacenada" />
+    <VariableItem v="K" desc="Factor decreciente" />
+  </UList>
+
+  <p slot="ecuations">DQ = -K*Q</p>
+
+  <Ecuation ecuation="draining-tank" slot="graph">
+    <InputNumber name="K" value="0.01" />
+    <InputNumber name="Q0" value="150" />
+  </Ecuation>
+
+  <p slot="experiments">
+    Piensa en un montón de hojas que están siendo descompuestas por microbios:
+  </p>
+  <UList slot="experiments">
+    <li>
+      Si comenzaras con una pila más grande de hojas en el bosque, con la misma
+      tasa de composición, ¿la pila desaparecería antes, al mismo tiempo o
+      después?
+    </li>
+    <li>
+      ¿Qué sucede si se duplica la tasa de descomposición de los microbios?
+    </li>
+  </UList>
+</EcuationLayout>
+
+<small slot="footer">
+  <a href="https://www.unicamp.br/fea/ortega/java/drain.htm" target="_blank">
+    Página original
+  </a>
+</small>
