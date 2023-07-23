@@ -21,7 +21,7 @@ function calculateData() {
     y: Q,
     type: "scatter",
     mode: "lines",
-    name: "Drain Plot",
+    name: "Drenaje",
     line: { color: "blue" },
   };
 

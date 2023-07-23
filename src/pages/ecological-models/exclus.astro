@@ -1,0 +1,77 @@
+---
+import EcuationLayout from "../../layouts/EcuationLayout.astro";
+import Ecuation from "@components/Ecuation.astro";
+import InputNumber from "@components/InputNumber.astro";
+import UList from "@components/UList.astro";
+import VariableItem from "@components/VariableItem.astro";
+---
+
+<EcuationLayout
+  title="Competencia por fuentes limitadas"
+  diagram="/img/exclus.gif"
+  originalLink="http://www.unicamp.br/fea/ortega/java/exclus.htm"
+>
+  <p slot="description">
+    Si dos especies utilizan una fuente común de alimento que escasea, el
+    crecimiento de una puede privar a la otra de su fuente de alimento. Bajo
+    ciertas condiciones, la especie que crece más rápido hace que la otra se
+    extinga.
+  </p>
+
+  <UList slot="examples">
+    <li>
+      Dos especies de escarabajos de grano en un frasco, al que se le suministra
+      un poco de grano cada día.
+    </li>
+    <li>
+      Competencia entre dos empresas madereras que se desarrollan en un área
+      limitada de árboles en crecimiento.
+    </li>
+  </UList>
+
+  <UList slot="variables">
+    <VariableItem v="I" desc="Fuente de energía " />
+    <VariableItem v="Q1, Q2" desc="dos poblaciones" />
+    <VariableItem v="K1, K2" desc="Tasas de crecimiento" />
+    <VariableItem v="K3, K4" desc="Tasas de mortalidad" />
+  </UList>
+
+  <p slot="ecuations">R = I/(1 + K1*Q + K2*Q2)</p>
+  <p slot="ecuations">D1 = K5*R*Q1 - K3*Q1</p>
+  <p slot="ecuations">D2 = K6*R*Q2 - K4*Q2</p>
+
+  <Ecuation ecuation="exclus" slot="graph">
+    <InputNumber name="Q1" label="Población inicial 1" value="8" />
+    <InputNumber name="K5" label="Factor creciente Q1" value="9" />
+    <InputNumber name="K3" label="Factor decreciente Q1" value="5" />
+    <InputNumber name="Q2" label="Población inicial 2" value="16" />
+    <InputNumber name="K6" label="Factor creciente Q2" value="5" />
+    <InputNumber name="K4" label="Factor decreciente Q2" value="5" />
+    <InputNumber
+      name="T"
+      label="Tiempo máximo"
+      hideName={true}
+      value="250"
+      min="1"
+    />
+
+    <div slot="ecuation-without-grid">
+      <label for="A">¿Habilitar interacción cooperativa?</label>
+      <input type="checkbox" name="A" id="A" />
+    </div>
+  </Ecuation>
+
+  <p slot="experiments">Piensa en dos poblaciones de especies competitivas.</p>
+  <UList slot="experiments">
+    <li>
+      Determine qué sucede si las dos poblaciones comienzan con los mismos
+      números iniciales, pero una tiene una tasa de crecimiento ligeramente
+      mayor.
+    </li>
+    <li>
+      Al variar los coeficientes de la tasa de crecimiento y la tasa de
+      decaimiento, ¿puede encontrar un conjunto de valores que permita la
+      coexistencia?
+    </li>
+  </UList>
+</EcuationLayout>
