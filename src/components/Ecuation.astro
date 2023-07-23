@@ -1,4 +1,6 @@
 ---
+import Button from "@components/Button.astro";
+
 interface Props {
   ecuation: string;
 }
@@ -7,11 +9,15 @@ const { ecuation } = Astro.props;
 ---
 
 <div class="mt-4">
-  <form data-ecuation={ecuation} id="graph-form">
-    <slot />
-    <button class="mt-2 block border" type="submit">Graficar</button>
-  </form>
   <div id="plot"></div>
+  <form data-ecuation={ecuation} id="graph-form">
+    <div class="grid gap-4 lg:grid-cols-3 lg:place-content-center mb-4">
+      <slot />
+    </div>
+    <slot name="ecuation-without-grid" />
+
+    <Button text="Graficar" />
+  </form>
 </div>
 
 <script>

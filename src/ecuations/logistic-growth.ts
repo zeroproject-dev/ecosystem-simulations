@@ -36,7 +36,7 @@ export function LogisticGrowth() {
       yaxis: { title: 'Población (Q)' }
     };
 
-    Plotly.newPlot('plot', data, layout);
+    Plotly.newPlot('plot', data, layout, { responsive: true });
   }
 
   draw();

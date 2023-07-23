@@ -1,13 +1,13 @@
 import Plotly from "plotly.js-dist";
 
 export function Compete() {
-  const Q1 = parseFloat(document.getElementById('Q1').value);
+  const Q1 = parseFloat((document.getElementById('Q1') as HTMLInputElement).value);
   const Q2 = parseFloat(document.getElementById('Q2').value);
   const K1 = 0.01 * parseFloat(document.getElementById('K1').value);
   const K2 = 0.01 * parseFloat(document.getElementById('K2').value);
   const K3 = 0.01 * parseFloat(document.getElementById('K3').value);
   const K4 = 0.01 * parseFloat(document.getElementById('K4').value);
-  const a = Boolean(document.getElementById('A').checked);
+  const a = Boolean((document.getElementById('A') as HTMLInputElement).checked);
   const maxTime = parseInt(document.getElementById("T").value);
 
   function draw() {
@@ -63,7 +63,7 @@ export function Compete() {
       yaxis: { title: 'Población (Q)' },
     };
 
-    Plotly.newPlot('plot', data, layout);
+    Plotly.newPlot('plot', data, layout, { responsive: true });
   }
 
   draw();

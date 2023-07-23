@@ -3,11 +3,12 @@ import Section from "@components/Section.astro";
 
 interface Props {
   title: string;
-  description: string;
   diagram: string;
+  originalLink: string;
+  description?: string;
 }
 
-const { title, description, diagram } = Astro.props;
+const { title, description, diagram, originalLink } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -21,26 +22,28 @@ const { title, description, diagram } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <main class="min-w-xs max-w-[90%] mx-auto mb-4 md:max-w-[1000px]">
+    <main class="min-w-xs max-w-[90%] mx-auto mb-4 lg:max-w-[1000px]">
       <h1 class="text-4xl text-center font-bold mt-4">{title}</h1>
       <div class="grid">
         <Section title="Diagrama">
           <div class="flex justify-center">
-            <img src={diagram} alt={title} />
+            <img class="max-w-[80%]" src={diagram} alt={title} />
           </div>
         </Section>
-        <Section title="Descripción">
-          <slot name="description" />
-        </Section>
-        <Section title="Ejemplos">
-          <slot name="examples" />
-        </Section>
-        <Section title="Variables">
-          <slot name="variables" />
-        </Section>
-        <Section title="Ecuaciones">
-          <slot name="ecuations" />
-        </Section>
+        <div class="lg:grid lg:grid-cols-2 lg:gap-4">
+          <Section title="Descripción">
+            <slot name="description" />
+          </Section>
+          <Section title="Ejemplos">
+            <slot name="examples" />
+          </Section>
+          <Section title="Variables">
+            <slot name="variables" />
+          </Section>
+          <Section title="Ecuaciones">
+            <slot name="ecuations" />
+          </Section>
+        </div>
         <Section title="Simulación">
           <p>
             El gráfico muestra los cambios de Q durante un período de tiempo.
@@ -53,7 +56,7 @@ const { title, description, diagram } = Astro.props;
       </div>
     </main>
     <footer>
-      <slot name="footer" />
+      <a href={originalLink} target="_blank"> Página original</a>
     </footer>
   </body>
 </html>

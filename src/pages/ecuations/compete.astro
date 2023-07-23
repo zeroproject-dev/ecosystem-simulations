@@ -8,8 +8,8 @@ import VariableItem from "@components/VariableItem.astro";
 
 <EcuationLayout
   title="Competencia de dos poblaciones en crecimiento exponencial"
-  description=""
   diagram="/img/compete.gif"
+  originalLink="https://www.unicamp.br/fea/ortega/java/compete.htm"
 >
   <p slot="description">
     Dos poblaciones que crecen de la misma fuente ilimitada aumentan
@@ -27,23 +27,29 @@ import VariableItem from "@components/VariableItem.astro";
 
   <UList slot="variables">
     <VariableItem v="E" desc="Fuente de energía" />
-    <VariableItem v="Q, Q2" desc="Dos poblaciones" />
+    <VariableItem v="Q1, Q2" desc="Dos poblaciones" />
     <VariableItem v="K1, K2" desc="Tasas de crecimiento" />
     <VariableItem v="K3, K4" desc="Tasas de mortalidad" />
   </UList>
 
-  <p slot="ecuations">DQ1 = K1*E*Q-K3*Q</p>
+  <p slot="ecuations">DQ1 = K1*E*Q1-K3*Q1</p>
   <p slot="ecuations">DQ2 = K2*E*Q2-K4*Q2</p>
 
   <Ecuation ecuation="compete" slot="graph">
-    <InputNumber name="Q1" value="3" />
-    <InputNumber name="Q2" value="3" />
-    <InputNumber name="K1" value="7" />
-    <InputNumber name="K2" value="8" />
-    <InputNumber name="K3" value="5" />
-    <InputNumber name="K4" value="5" />
-    <InputNumber name="T" label="Tiempo máximo" value="320" min="1" />
-    <div>
+    <InputNumber name="Q1" label="Población 1" value="3" />
+    <InputNumber name="Q2" label="Población 2" value="3" />
+    <InputNumber name="K1" label="Crecimiento población 1" value="7" />
+    <InputNumber name="K2" label="Crecimiento población 2" value="8" />
+    <InputNumber name="K3" label="Mortalidad población 1" value="5" />
+    <InputNumber name="K4" label="Mortalidad población 2" value="5" />
+    <InputNumber
+      name="T"
+      label="Tiempo máximo"
+      hideName={true}
+      value="320"
+      min="1"
+    />
+    <div slot="ecuation-without-grid">
       <label for="A">¿Modo Cuadrático?</label>
       <input type="checkbox" name="A" id="A" />
     </div>
@@ -59,9 +65,3 @@ import VariableItem from "@components/VariableItem.astro";
     <li>¿Cuál es el efecto de la retroalimentación cuadrática?</li>
   </UList>
 </EcuationLayout>
-
-<small slot="footer">
-  <a href="https://www.unicamp.br/fea/ortega/java/compete.htm" target="_blank">
-    Página original
-  </a>
-</small>

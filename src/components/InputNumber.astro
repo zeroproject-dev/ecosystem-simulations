@@ -2,18 +2,23 @@
 interface Props {
   name: string;
   value: string;
-  label: string | null;
-  min: string | null;
-  step: string | null;
+  label?: string;
+  min?: string;
+  step?: string;
+  hideName?: boolean;
 }
 
-const { name, value, label, min, step } = Astro.props;
+let { name, value, label, min, step, hideName } = Astro.props;
+
+if (!hideName) label = label ? `${name} (${label})` : undefined;
 ---
 
 <div>
-  <label for="" class="block"> {label || name}:</label>
+  <label for={name} class="block mb-2 text-sm font-medium text-gray-900">
+    {label || name}:
+  </label>
   <input
-    class="border"
+    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
     type="number"
     value={value}
     min={min || "0.00001"}
