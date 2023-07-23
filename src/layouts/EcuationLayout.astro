@@ -23,7 +23,7 @@ const { title, description, diagram, originalLink } = Astro.props;
   </head>
   <body>
     <main class="min-w-xs max-w-[90%] mx-auto mb-4 lg:max-w-[1000px]">
-      <h1 class="text-4xl text-center font-bold mt-4">{title}</h1>
+      <h1 class="text-4xl text-center font-bold my-4">{title}</h1>
       <div class="grid">
         <Section title="Diagrama">
           <div class="flex justify-center">
@@ -55,8 +55,10 @@ const { title, description, diagram, originalLink } = Astro.props;
         </Section>
       </div>
     </main>
-    <footer>
-      <a href={originalLink} target="_blank"> Página original</a>
+    <footer
+      class="min-w-[100%] mt-10 bg-blue-900 py-4 grid place-content-center text-white"
+    >
+      <a href={originalLink} target="_blank">🔗 Página original</a>
     </footer>
   </body>
 </html>
