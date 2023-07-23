@@ -1,22 +1,30 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Section from "@components/Section.astro";
+import Card from "@components/Card.astro";
 ---
 
 <Layout title="Simulaciones de ecosistemas">
-  <main>
-    <div class="block">
-      <a href="/ecological-models/draining-tank">Tanque de drenaje</a>
-    </div>
-    <div>
-      <a href="/ecological-models/logistic-growth">Crecimiento logístico</a>
-    </div>
-    <div>
-      <a href="/ecological-models/compete">
-        Competencia de dos poblaciones en crecimiento exponencial
-      </a>
-    </div>
-    <div>
-      <a href="/ecological-models/coop"> Existencia Cooperativa</a>
-    </div>
+  <main class="min-w-xs max-w-[90%] mx-auto mb-4 lg:max-w-[1000px]">
+    <h1 class="text-4xl text-center font-bold my-4">
+      Simulaciones de ecosistemas
+    </h1>
+    <Section title="Modelos ecológicos">
+      <div class="grid gap-2">
+        <Card
+          title="Tanque de drenaje"
+          href="/ecological-models/draining-tank"
+        />
+        <Card
+          title="Crecimiento logístico"
+          href="/ecological-models/logistic-growth"
+        />
+        <Card
+          title="Competencia de dos poblaciones en crecimiento exponencial"
+          href="/ecological-models/compete"
+        />
+        <Card title="Existencia Cooperativa" href="/ecological-models/coop" />
+      </div>
+    </Section>
   </main>
 </Layout>
