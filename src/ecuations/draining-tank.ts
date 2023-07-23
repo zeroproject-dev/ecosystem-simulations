@@ -3,7 +3,7 @@ import { drawPlot, $in } from "src/lib";
 function calculateData() {
   let K = parseFloat($in("K").value);
   let Q0 = parseFloat($in("Q0").value);
-  const maxTime = parseInt(($in("T") as HTMLInputElement).value);
+  const maxTime = parseInt($in("T").value);
 
   let t = [];
   let Q = [];

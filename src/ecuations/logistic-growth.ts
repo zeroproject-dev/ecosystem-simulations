@@ -5,7 +5,7 @@ function calculateData() {
   let q = parseFloat($in("Q0").value);
   let k4 = 0.0001 * parseFloat($in("K0").value);
   let k1 = 0.04;
-  const maxTime = parseInt(($in("T") as HTMLInputElement).value);
+  const maxTime = parseInt($in("T").value);
 
   let tValues = [];
   let QValues = [];

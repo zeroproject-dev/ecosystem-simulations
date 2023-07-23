@@ -1,13 +1,13 @@
 import { drawPlot, $in } from "src/lib";
 
 function calculateData() {
-  const Q1 = parseFloat(($in('Q1') as HTMLInputElement).value);
+  const Q1 = parseFloat($in('Q1').value);
   const Q2 = parseFloat($in('Q2').value);
   const K1 = 0.01 * parseFloat($in('K1').value);
   const K2 = 0.01 * parseFloat($in('K2').value);
   const K3 = 0.01 * parseFloat($in('K3').value);
   const K4 = 0.01 * parseFloat($in('K4').value);
-  const a = ($in('A') as HTMLInputElement).checked;
+  const a = $in('A').checked;
   const maxTime = parseInt($in("T").value);
 
   const tValues = [];
