@@ -1,0 +1,68 @@
+---
+import EcuationLayout from "../../layouts/EcuationLayout.astro";
+import Ecuation from "@components/Ecuation.astro";
+import InputNumber from "@components/InputNumber.astro";
+import UList from "@components/UList.astro";
+import VariableItem from "@components/VariableItem.astro";
+---
+
+<EcuationLayout
+  title="Existencia Cooperativa"
+  diagram="/img/coop.gif"
+  originalLink="https://www.unicamp.br/fea/ortega/java/compete.htm"
+>
+  <p slot="description">
+    Si una población depende de otra y viceversa, hablamos de existencia
+    cooperativa o colaboración. Ambas poblaciones crecen hasta que alcanzan un
+    estado estacionario, que depende de la tasa de crecimiento y mortalidad de
+    ambas poblaciones.
+  </p>
+
+  <UList slot="examples">
+    <li>
+      Un pez pequeño que vive como parásito de un pez más grande limpiándose la
+      piel.
+    </li>
+    <li>
+      Un hongo y células de algas que forman juntos el liquen vegetal sin
+      flores.
+    </li>
+  </UList>
+
+  <UList slot="variables">
+    <VariableItem v="R" desc="Factor de crecimiento" />
+    <VariableItem v="Q1, Q2" desc="Población 1 y 2" />
+    <VariableItem v="K1-8" desc="Factores crecientes y decrecientes" />
+  </UList>
+
+  <p slot="ecuations">R=1/(1+K1*Q1*Q2-K2*Q1*Q2)</p>
+  <p slot="ecuations">DQ1=K5*R*Q1*Q2-K7*Q1*Q2-K3*Q1</p>
+  <p slot="ecuations">DQ2=K6*R*Q1*Q2-K8*Q1*Q2-K4*Q2</p>
+
+  <Ecuation ecuation="coop" slot="graph">
+    <InputNumber name="Q1" label="Población inicial 1" value="3" />
+    <InputNumber name="Q2" label="Población inicial 2" value="3" />
+    <InputNumber name="K1" label="Crecimiento población 1" value="7" />
+    <InputNumber name="K2" label="Crecimiento población 2" value="8" />
+    <InputNumber name="K3" label="Mortalidad población 1" value="5" />
+    <InputNumber name="K4" label="Mortalidad población 2" value="5" />
+    <InputNumber
+      name="T"
+      label="Tiempo máximo"
+      hideName={true}
+      value="320"
+      min="1"
+    />
+  </Ecuation>
+
+  <UList slot="experiments">
+    <li>
+      Si una de las dos especies comenzó con una población inicial mucho más
+      alta, ¿cómo afectaría el nivel del estado estacionario?
+    </li>
+    <li>
+      ¿Cómo afectan las tasas de crecimiento y mortalidad de una población al
+      nivel del estado estacionario?
+    </li>
+  </UList>
+</EcuationLayout>
