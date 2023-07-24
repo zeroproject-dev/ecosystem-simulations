@@ -4,10 +4,11 @@ import { Compete } from "./compete";
 import { Coop } from "./coop";
 import { Exclus } from "./exclus";
 import { Interact } from "./interact";
-import { Oscillat } from "./oscillat"
-import { NetProd } from "./netprod"
-import { OpenAq } from "./openaq"
-import { Pulse } from "./pulse"
+import { Oscillat } from "./oscillat";
+import { NetProd } from "./netprod";
+import { OpenAq } from "./openaq";
+import { Pulse } from "./pulse";
+import { Saltmrsh } from "./saltmrsh";
 
 interface ShowData {
   [key: string]: Function
@@ -24,6 +25,7 @@ const showData: ShowData = {
   "netprod": NetProd,
   "openaq": OpenAq,
   "pulse": Pulse,
+  "saltmrsh": Saltmrsh,
 }
 
 export function show(id: string) {

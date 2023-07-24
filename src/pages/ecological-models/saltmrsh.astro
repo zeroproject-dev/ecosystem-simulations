@@ -1,0 +1,84 @@
+---
+import EcuationLayout from "../../layouts/EcuationLayout.astro";
+import Ecuation from "@components/Ecuation.astro";
+import InputNumber from "@components/InputNumber.astro";
+import UList from "@components/UList.astro";
+import VariableItem from "@components/VariableItem.astro";
+---
+
+<EcuationLayout
+  title="Pantano salino"
+  diagram="/img/saltmrsh.gif"
+  simulation="El gráfico muestra los cambios de I (sol), E (marea), J (río), Q1 (nutrientes), Q2 (hierba), Q3 (turba) durante un período de 5 años."
+  originalLink="https://www.unicamp.br/fea/ortega/java/saltmrsh.htm"
+>
+  <p slot="description">
+    Se simula un modelo simple de marisma salada en una latitud templada bajo
+    las influencias rítmicas del sol, la afluencia del río y los cambios
+    estacionales en la magnitud del flujo de las mareas. Los nutrientes y la
+    materia orgánica se reciben de la entrada del río y se eliminan mediante el
+    intercambio de mareas. La producción orgánica de las plantas de los pantanos
+    está en función de los niveles de nutrientes y del sol; los nutrientes se
+    reciclan de las plantas y los consumidores.
+  </p>
+
+  <UList slot="examples">
+    <li>
+      todos los sistemas con entradas rítmicas como las del sol, el clima y las
+      mareas
+    </li>
+    <li>"filtrar"</li>
+  </UList>
+
+  <UList slot="variables">
+    <VariableItem v="Q1" desc="Nutrientes" />
+    <VariableItem v="Q2" desc="Plantas" />
+    <VariableItem v="Q3" desc="Materia orgánica muerta" />
+    <VariableItem v="D1" desc="Aumento de Nutrientes" />
+    <VariableItem v="D2" desc="Aumento de Plantas" />
+    <VariableItem v="D3" desc="Aumento de Materia orgánica muerta" />
+    <VariableItem v="K.." desc="Coeficientes de interacción" />
+  </UList>
+
+  <p slot="ecuations">R = I / (1 + K0 * Q1)</p>
+  <p slot="ecuations">D1 = J - K5 * R * Q1 + K3 * Q2 + K9 * Q3 - K4 * Q1 * E</p>
+  <p slot="ecuations">D2 = K1 * R * Q1 - K7 * Q2 - K2 * Q2</p>
+  <p slot="ecuations">D3 = K7 * Q2 - K8 * Q3 - K6 * Q3 * E</p>
+
+  <Ecuation ecuation="saltmrsh" slot="graph">
+    <InputNumber name="Q3" label="Almacenamiento inicial" value="500" />
+    <InputNumber
+      name="X"
+      label="Multiplicar el rango de marea por (1 o 2)"
+      value="1"
+      min="1"
+      step="1"
+    />
+    <InputNumber
+      name="Y"
+      label="Multiplicar el flujo de luz solar por (1 o 2)"
+      value="1"
+      min="1"
+      step="1"
+    />
+    <InputNumber
+      name="Z"
+      label="Multiplicar el flujo de nutrientes por (1 o 2)"
+      value="1"
+      min="1"
+      step="1"
+    />
+  </Ecuation>
+
+  <UList slot="experiments">
+    <li>
+      ¿Cuál es el efecto de un pequeño almacenamiento inicial de materia
+      orgánica sobre las oscilaciones en el sistema debido a las oscilaciones de
+      entrada externa?
+    </li>
+    <li>
+      ¿Cuál es el efecto de aumentar la amplitud de las mareas, la entrada de
+      luz solar, la entrada de nutrientes?
+    </li>
+  </UList>
+</EcuationLayout>
