@@ -1,0 +1,59 @@
+---
+import EcuationLayout from "../../layouts/EcuationLayout.astro";
+import Ecuation from "@components/Ecuation.astro";
+import InputNumber from "@components/InputNumber.astro";
+import UList from "@components/UList.astro";
+import VariableItem from "@components/VariableItem.astro";
+---
+
+<EcuationLayout
+  title="Producción neta"
+  simulation="El gráfico muestra los cambios de S, P, PC y Q durante 8 años."
+  diagram="/img/netprod.gif"
+  originalLink="https://www.unicamp.br/fea/ortega/java/netprod.htm"
+>
+  <p slot="description">
+    En un sistema ecológico tenemos productores y consumidores. La producción es
+    proporcional a los recursos entrantes que varían a lo largo de cuatro
+    temporadas y luego se repiten al año siguiente. El consumo es proporcional
+    al almacenamiento del producto. El equilibrio entre la producción bruta y el
+    consumo se denomina producción neta.
+  </p>
+
+  <UList slot="examples">
+    <li>Estanques, lagos, ríos, océanos, campos, bosques, etc.</li>
+    <li>Producción económica como los productos de una industria.</li>
+  </UList>
+
+  <UList slot="variables">
+    <VariableItem v="S" desc="Fuente de energía" />
+    <VariableItem v="P" desc="Producción bruta" />
+    <VariableItem v="C" desc="Consumo" />
+    <VariableItem v="Q" desc="Almacenamiento" />
+    <VariableItem v="K1, K2" desc="Factores de producción y consumo" />
+  </UList>
+
+  <p slot="ecuations">P = K1 * S</p>
+  <p slot="ecuations">C = K2 * Q</p>
+  <p slot="ecuations">DQ = P - C</p>
+  <p slot="ecuations">
+    S = 200,000, 350,000, 450,000, 350,000 (varía con las 4 estaciones)
+  </p>
+
+  <Ecuation ecuation="netprod" slot="graph">
+    <InputNumber name="Q" label="Almacenamiento inicial" value="1" />
+    <InputNumber name="K1" label="Factor de producción" value="5" />
+    <InputNumber name="K2" label="Factor de consumo" value="5" />
+  </Ecuation>
+
+  <p slot="experiments">depredado:</p>
+  <UList slot="experiments">
+    <li>¿Cuál es el efecto de aumentar la tasa de consumo?.</li>
+    <li>¿Cuál es el efecto de aumentar la tasa de producción?.</li>
+    <li>
+      ¿Qué tipo de gráficos resultarán si el almacenamiento del producto
+      comienza con un valor más alto que el estado estacionario en la simulación
+      inicial? (Ingrese Q=1'000'000)
+    </li>
+  </UList>
+</EcuationLayout>
