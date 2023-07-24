@@ -4,11 +4,12 @@ import Section from "@components/Section.astro";
 interface Props {
   title: string;
   originalLink: string;
+  simulation?: string;
   diagram?: string;
   description?: string;
 }
 
-const { title, description, diagram, originalLink } = Astro.props;
+const { title, description, diagram, originalLink, simulation } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -51,7 +52,10 @@ const { title, description, diagram, originalLink } = Astro.props;
         </div>
         <Section title="Simulación">
           <p>
-            El gráfico muestra los cambios de Q durante un período de tiempo.
+            {
+              simulation ||
+                "El gráfico muestra los cambios de Q durante un período de tiempo."
+            }
           </p>
         </Section>
         <slot name="graph" />
