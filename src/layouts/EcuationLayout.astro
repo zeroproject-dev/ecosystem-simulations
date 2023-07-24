@@ -3,8 +3,8 @@ import Section from "@components/Section.astro";
 
 interface Props {
   title: string;
-  diagram: string;
   originalLink: string;
+  diagram?: string;
   description?: string;
 }
 
@@ -26,11 +26,15 @@ const { title, description, diagram, originalLink } = Astro.props;
       <h1 class="text-4xl text-center font-bold my-4">{title}</h1>
       <a href="/">🏠 regresar</a>
       <div class="grid">
-        <Section title="Diagrama">
-          <div class="flex justify-center">
-            <img class="max-w-[80%]" src={diagram} alt={title} />
-          </div>
-        </Section>
+        {
+          diagram && (
+            <Section title="Diagrama">
+              <div class="flex justify-center">
+                <img class="max-w-[80%]" src={diagram} alt={title} />
+              </div>
+            </Section>
+          )
+        }
         <div class="lg:grid lg:grid-cols-2 lg:gap-4">
           <Section title="Descripción">
             <slot name="description" />
