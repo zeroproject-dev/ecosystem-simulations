@@ -4,6 +4,7 @@ import { Compete } from "./compete";
 import { Coop } from "./coop";
 import { Exclus } from "./exclus";
 import { Interact } from "./interact";
+import { Oscillat } from "./oscillat"
 
 interface ShowData {
   [key: string]: Function
@@ -16,6 +17,7 @@ const showData: ShowData = {
   "coop": Coop,
   "exclus": Exclus,
   "interact": Interact,
+  "oscillat": Oscillat,
 }
 
 export function show(id: string) {

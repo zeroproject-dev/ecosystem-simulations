@@ -1,0 +1,81 @@
+---
+import EcuationLayout from "../../layouts/EcuationLayout.astro";
+import Ecuation from "@components/Ecuation.astro";
+import InputNumber from "@components/InputNumber.astro";
+import UList from "@components/UList.astro";
+import VariableItem from "@components/VariableItem.astro";
+---
+
+<EcuationLayout
+  title="Oscilación Presa-Depredador"
+  originalLink="https://www.unicamp.br/fea/ortega/java/oscillat.htm"
+>
+  <p slot="description">
+    Existen oscilaciones regulares entre las poblaciones de presas y
+    depredadores. A medida que la población de presas comienza a crecer
+    exponencialmente, la población de depredadores crece tan rápido que la
+    cantidad de presas se reduce nuevamente. Con menos para comer, la población
+    de depredadores vuelve a disminuir. El segundo modelo (Daypr) es más
+    realista. Allí, la fuente de energía relativamente ilimitada E es
+    reemplazada por J, la fuente de energía renovable constante del sol y la
+    lluvia. También se agregan un almacenamiento, P, de pastos y la depreciación
+    de la presa, K6*H.
+  </p>
+
+  <UList slot="examples">
+    <li>Liebre con raquetas de nieve y lince.</li>
+    <li>Poblaciones árticas (plantas y lemmings).</li>
+  </UList>
+
+  <UList slot="variables">
+    <VariableItem v="E" desc="Fuente de energía ilimitada" />
+    <VariableItem
+      v="J"
+      desc="Fuente de energía renovable (Kilocal. por m2/Verano)"
+    />
+    <VariableItem v="H" desc="Herbívoros" />
+    <VariableItem v="C" desc="Carnívoros" />
+    <VariableItem v="P" desc="Almacenamiento de pastos" />
+    <VariableItem v="K6" desc="Depreciación de las presas" />
+  </UList>
+
+  <p slot="ecuations">DP = K0*J - K*P*H</p>
+  <p slot="ecuations">DH = K1*P*H ( - K6*H ) - K4*H*C</p>
+  <p slot="ecuations">CC = K5*H*C - K8*C</p>
+
+  <Ecuation ecuation="oscillat" slot="graph">
+    <InputNumber
+      name="E"
+      hideName={true}
+      label="(E, J) Energía"
+      value="10000"
+    />
+    <InputNumber name="K6" label="Coeficiente de depreciación" value="5" />
+    <InputNumber
+      name="T"
+      label="Tiempo máximo"
+      hideName={true}
+      value="320"
+      min="1"
+    />
+
+    <div slot="ecuation-without-grid">
+      <label for="A">¿Recursos renovables?</label>
+      <input type="checkbox" name="A" id="A" />
+    </div>
+  </Ecuation>
+
+  <p slot="experiments">depredado:</p>
+  <UList slot="experiments">
+    <li>
+      Cambie a un sistema en una latitud más alta o más baja donde haya más o
+      menos sol. ¿Qué sucede con las oscilaciones?.
+    </li>
+    <li>
+      Cambia los herbívoros por especies que tienen vidas más cortas aumentando
+      su depreciación. ¿Qué sucede con los herbívoros y carnívoros? ¿Qué sucede
+      con las oscilaciones? ¿Por qué el primer pico es más alto cuando la
+      depreciación es más alta?.
+    </li>
+  </UList>
+</EcuationLayout>
