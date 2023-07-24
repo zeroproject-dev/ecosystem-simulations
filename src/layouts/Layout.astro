@@ -16,7 +16,15 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body>
+  <body class="flex flex-col justify-between min-h-[100vh]">
     <slot />
+
+    <footer
+      class="min-w-[100%] mt-10 bg-blue-900 py-4 grid place-content-center text-white"
+    >
+      <a href="https://www.unicamp.br/fea/ortega/java/index.htm" target="_blank"
+        >🔗 Proyecto original</a
+      >
+    </footer>
   </body>
 </html>
