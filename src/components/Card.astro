@@ -9,9 +9,11 @@ const { href, title } = Astro.props;
 
 <div class="border border-blue-400 rounded-xl">
   <a href={href}>
-    <p class="p-2">
-      <span>&rarr;</span>
-      {title}
-    </p>
+    <li class="ml-8">
+      <p class="p-2">
+        <span>&rarr;</span>
+        {title}
+      </p>
+    </li>
   </a>
 </div>
