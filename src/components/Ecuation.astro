@@ -23,11 +23,18 @@ const { ecuation } = Astro.props;
 <script>
   import { show } from "../ecuations/index";
   const $form = document.getElementById("graph-form") as HTMLFormElement;
+  const $drawButton = document.getElementById("draw") as HTMLButtonElement;
+
+  function draw() {
+    $drawButton.disabled = true;
+    show($form.getAttribute("data-ecuation"));
+    $drawButton.disabled = false;
+  }
 
   $form.addEventListener("submit", (e) => {
     e.preventDefault();
-    show($form.getAttribute("data-ecuation"));
+    draw();
   });
 
-  show($form.getAttribute("data-ecuation"));
+  draw();
 </script>
