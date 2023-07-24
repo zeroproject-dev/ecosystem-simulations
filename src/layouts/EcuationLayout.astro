@@ -4,12 +4,14 @@ import Section from "@components/Section.astro";
 interface Props {
   title: string;
   originalLink: string;
+  examplesTitle?: string;
   simulation?: string;
   diagram?: string;
   description?: string;
 }
 
-const { title, description, diagram, originalLink, simulation } = Astro.props;
+const { title, description, diagram, originalLink, simulation, examplesTitle } =
+  Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -40,7 +42,7 @@ const { title, description, diagram, originalLink, simulation } = Astro.props;
           <Section title="Descripción">
             <slot name="description" />
           </Section>
-          <Section title="Ejemplos">
+          <Section title={examplesTitle || "Ejemplos"}>
             <slot name="examples" />
           </Section>
           <Section title="Variables">

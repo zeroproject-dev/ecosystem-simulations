@@ -1,0 +1,113 @@
+---
+import EcuationLayout from "../../layouts/EcuationLayout.astro";
+import Ecuation from "@components/Ecuation.astro";
+import InputNumber from "@components/InputNumber.astro";
+import UList from "@components/UList.astro";
+import VariableItem from "@components/VariableItem.astro";
+---
+
+<EcuationLayout
+  title="Dos poblaciones con interacciones competitivas"
+  simulation="El gráfico muestra los cambios de S (sol), N (Nutrientes), X (Oxígeno), DQ (producción neta), P (Producción), R (Respiración) durante un período de tiempo de siete días."
+  diagram="/img/openaq.gif"
+  examplesTitle="Observaciones"
+  originalLink="https://www.unicamp.br/fea/ortega/java/openaq.htm"
+>
+  <p slot="description">
+    El sistema es un acuario abierto al aire. Este modelo ilustra los principios
+    básicos del funcionamiento de los ecosistemas. Cuando la luz brilla, hay
+    producción de oxígeno y materia orgánica que son utilizados por los
+    consumidores, que a su vez regeneran los materiales nutritivos N (incluido
+    el dióxido de carbono) que se reciclan para uso de las plantas.
+  </p>
+
+  <p slot="description">
+    El oxígeno se difunde de un lado a otro entre la fase gaseosa del aire y el
+    estado de oxígeno disuelto en el agua.
+  </p>
+  <p slot="description">
+    Cuando el consumo respiratorio consume oxígeno disuelto durante la noche, se
+    repone en cierta medida por difusión desde el espacio aéreo.
+  </p>
+
+  <UList slot="examples">
+    <li>
+      La producción neta es positiva durante el día y negativa durante la noche.
+      Como resultado, el oxígeno sube y baja.
+    </li>
+    <li>
+      Este es un buen modelo para usar al medir el oxígeno disuelto durante el
+      transcurso del día.
+    </li>
+  </UList>
+
+  <UList slot="variables">
+    <VariableItem v="S" desc="Energía solar" />
+    <VariableItem v="N" desc="Nutrientes" />
+    <VariableItem v="X" desc="Oxígeno" />
+    <VariableItem v="Q" desc="Materia orgánica" />
+    <VariableItem v="P" desc="Producción" />
+    <VariableItem v="R" desc="Respiración" />
+    <VariableItem v="R" desc="Energía solar residual" />
+    <VariableItem v="NT" desc="Nutrientes totales" />
+    <VariableItem v="F" desc="Proporción de nutrientes en Q" />
+    <VariableItem v="XS" desc="Concentración de saturación de oxígeno" />
+    <VariableItem v="Z" desc="Profundidad del acuario" />
+    <VariableItem v="K" desc="Coeficientes de interacción" />
+    <VariableItem v="DQ" desc="Incrementos de Materia orgánica" />
+    <VariableItem v="DX" desc="Incrementos de Oxígeno" />
+    <VariableItem v="DT" desc="Incrementos de Tiempo" />
+    <VariableItem v="T" desc="Tiempo" />
+  </UList>
+
+  <p slot="ecuations">S = SIN(T / 3.78)</p>
+  <p slot="ecuations">N = ((NT - F * Q) / Z)</p>
+  <p slot="ecuations">R = S / (1 + K0 * N)</p>
+  <p slot="ecuations">DQ = K2 * R * N - K4 * X * Q</p>
+  <p slot="ecuations">DX = K1 * R * N - K3 * X * Q + K5 * (1 - X / XS)</p>
+  <p slot="ecuations">Q = Q + DQ * DT</p>
+  <p slot="ecuations">X = X + DX * DT / Z</p>
+  <p slot="ecuations">P = K1 * R * N</p>
+  <p slot="ecuations">R = K3 * X * Q</p>
+  <p slot="ecuations">T = T + DT</p>
+
+  <Ecuation ecuation="openaq" slot="graph">
+    <InputNumber name="Q" label="Cantidad de agua" value="10" />
+    <InputNumber name="NT" label="Nivel de nutrientes" value="1.5" />
+    <InputNumber name="F" label="Proporción de los nutrientes" value="1.0" />
+    <InputNumber name="Z" label="Profundidad del aucuario" value="1.0" />
+    <InputNumber name="Xs" label="Saturación de oxígeno" value="8" />
+    <InputNumber name="K0" label="Crecimiento del oxígeno" value="9" />
+    <InputNumber name="K1" label="Producción del oxígeno" value="10" />
+    <InputNumber name="K2" label="Consumo de oxígeno" value="10" />
+    <InputNumber name="K3" label="Producción de nutrientes" value="0.01" />
+    <InputNumber name="K4" label="Consumo de nutrientes" value="0.01" />
+    <InputNumber name="K5" label="Crecimiento de nutrientes" value="1.0" />
+  </Ecuation>
+
+  <UList slot="experiments">
+    <li>
+      ¿Cuál sería el efecto de agregar una gran cantidad de materia orgánica?
+      Establecer el valor inicial de Q = 10000. ¿Cuál será el efecto de esto
+      sobre el equilibrio relativo entre producción y respiración?.
+    </li>
+    <li>
+      ¿Qué pasaría si la luz se encendiera continuamente? ¿Por qué la producción
+      de materia orgánica y oxígeno aumentará temporalmente?.
+    </li>
+    <li>
+      ¿Cuál sería el efecto de agregar una gran cantidad de nutrientes
+      inorgánicos N? Establezca TN = 50. ¿Continúa el exceso de un tipo de
+      metabolismo? Cuando los procesos metabólicos están regulados por la
+      retroalimentación del ecosistema para restablecer el equilibrio de los
+      procesos, el proceso se denomina homeostasis.
+    </li>
+    <li>
+      La tasa de intercambio de difusión entre el aire y el agua depende del
+      coeficiente de difusión K5 de la figura. Esta difusión depende de la
+      rapidez con la que se agitan las aguas. ¿Cuál es el efecto p de reducir el
+      coeficiente de difusión a una décima parte de su valor actual? Esto podría
+      ocurrir si el plástico flotara en la superficie del agua.
+    </li>
+  </UList>
+</EcuationLayout>

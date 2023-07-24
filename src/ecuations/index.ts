@@ -6,6 +6,7 @@ import { Exclus } from "./exclus";
 import { Interact } from "./interact";
 import { Oscillat } from "./oscillat"
 import { NetProd } from "./netprod"
+import { OpenAq } from "./openaq"
 
 interface ShowData {
   [key: string]: Function
@@ -20,6 +21,7 @@ const showData: ShowData = {
   "interact": Interact,
   "oscillat": Oscillat,
   "netprod": NetProd,
+  "openaq": OpenAq,
 }
 
 export function show(id: string) {
