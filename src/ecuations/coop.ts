@@ -69,8 +69,8 @@ export function Coop() {
 
   const layout = {
     title: 'Existencia Cooperativa',
-    xaxis: { title: 'Time (t)' },
-    yaxis: { title: 'Population' },
+    xaxis: { title: 'Tiempo (t)' },
+    yaxis: { title: 'Población (Q)' },
   };
 
   drawPlot({ data, layout });
