@@ -46,6 +46,13 @@ import VariableItem from "@components/VariableItem.astro";
     <InputNumber name="TM" label="Nutrientes totales" value="200" />
     <InputNumber name="K2" label="Interacción 1" value="1" />
     <InputNumber name="K4" label="Interacción 2" value="20" />
+    <InputNumber
+      name="T"
+      label="Tiempo máximo"
+      hideName={true}
+      value="320"
+      min="1"
+    />
   </Ecuation>
 
   <p slot="experiments">
