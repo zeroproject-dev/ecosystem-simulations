@@ -10,6 +10,7 @@ import { OpenAq } from "./openaq";
 import { Pulse } from "./pulse";
 import { Saltmrsh } from "./saltmrsh";
 import { Fire } from "./fire";
+import { Climax } from "./climax";
 
 interface ShowData {
   [key: string]: Function;
@@ -28,6 +29,7 @@ const showData: ShowData = {
   "pulse": Pulse,
   "saltmrsh": Saltmrsh,
   "fire": Fire,
+  "climax": Climax,
 }
 
 export function show(id: string) {

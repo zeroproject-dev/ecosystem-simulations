@@ -1,0 +1,87 @@
+---
+import EcuationLayout from "../../layouts/EcuationLayout.astro";
+import Ecuation from "@components/Ecuation.astro";
+import InputNumber from "@components/InputNumber.astro";
+import UList from "@components/UList.astro";
+import VariableItem from "@components/VariableItem.astro";
+---
+
+<EcuationLayout
+  title="Climax y sucesión"
+  diagram="/img/climax.gif"
+  simulation="El gráfico muestra los cambios de d (azul), b (verde), pg (naranja), db (rosa) durante el período de sucesión hasta el clímax."
+  originalLink="https://www.unicamp.br/fea/ortega/java/climax.htm"
+>
+  <p slot="description">
+    Este es un modelo de sucesión ecológica que conduce a un ecosistema clímax.
+    Comienza en un campo desnudo con algunos pastos y termina con plantas más
+    grandes como árboles. El crecimiento de la biomasa depende de las fuentes de
+    energía renovables externas, pero también de la diversidad. A medida que
+    aumenta la cantidad de biomasa, proporciona nichos para la siembra desde el
+    exterior para aumentar la diversidad. A mayor diversidad mayor
+    productividad.
+  </p>
+
+  <UList slot="examples">
+    <li>
+      Las especies clímax en el bioma de los pastizales son los pastos, en los
+      arrecifes de coral son los corales.
+    </li>
+    <li>civilizaciones humanas y negocios</li>
+  </UList>
+
+  <UList slot="variables">
+    <VariableItem v="I" desc="Fuentes de energía (lluvia, sol, viento)" />
+    <VariableItem v="S" desc="Siembra" />
+    <VariableItem v="B" desc="Biomasa" />
+    <VariableItem v="D" desc="Diversidad" />
+    <VariableItem v="PG" desc="Producción bruta" />
+    <VariableItem v="DB" desc="Producción neta" />
+    <VariableItem v="K4" desc="Cosecha" />
+  </UList>
+
+  <p slot="ecuations">R = I / (1 + K0 * D + K1 * B)</p>
+  <p slot="ecuations">PG = K2 * R * D + K3 * R * B</p>
+  <p slot="ecuations">DB = PG - K5 * D * D - K6 * B - K4 * B</p>
+  <p slot="ecuations">DD = K8 * B * S - K9 * D - K7 * D * D</p>
+
+  <Ecuation ecuation="climax" slot="graph">
+    <InputNumber name="K4" label="Cosecha" value="25" min="i" step="1" />
+    <InputNumber
+      name="I"
+      label="Fuente de energia"
+      value="100"
+      min="1"
+      step="1"
+    />
+    <InputNumber
+      name="T"
+      label="Tiempo máximo"
+      hideName={true}
+      value="320"
+      min="1"
+    />
+
+    <div slot="ecuation-without-grid">
+      <label for="A">¿Con siembra?</label>
+      <input type="checkbox" name="A" id="A" checked />
+    </div>
+  </Ecuation>
+
+  <p slot="experiments">Piensa en una selva tropical.</p>
+
+  <UList slot="experiments">
+    <li>
+      Si el crecimiento ocurre sin semillas de especies, ¿qué pasará con la
+      cantidad de biomasa?
+    </li>
+    <li>
+      Si aumenta la cosecha (rendimiento) 20 veces, ¿qué sucede con la biomasa y
+      la diversidad?
+    </li>
+    <li>
+      ¿Qué pasaría con el sistema si hubiera un cambio climático que redujera la
+      lluvia a la mitad?
+    </li>
+  </UList>
+</EcuationLayout>
