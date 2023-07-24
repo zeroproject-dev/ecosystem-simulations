@@ -1,0 +1,85 @@
+---
+import EcuationLayout from "../../layouts/EcuationLayout.astro";
+import Ecuation from "@components/Ecuation.astro";
+import InputNumber from "@components/InputNumber.astro";
+import UList from "@components/UList.astro";
+import VariableItem from "@components/VariableItem.astro";
+---
+
+<EcuationLayout
+  title="Fuego"
+  diagram="/img/fire.gif"
+  simulation="El gráfico muestra los cambios de N (azul) y Q (verde) durante un período de tiempo. Las líneas rojas muestran el fuego."
+  originalLink="https://www.unicamp.br/fea/ortega/java/fire.htm"
+>
+  <p slot="description">
+    Fire es un modelo pulsante que incluye un interruptor. Cuando la hierba ha
+    crecido hasta alcanzar una masa crítica, el fuego se enciende. Cuando la
+    hierba se ha consumido, el fuego se apaga. A medida que el fuego arde,
+    libera nutrientes que estimulan el crecimiento y se acumulan nuevamente en
+    la hierba.
+  </p>
+
+  <UList slot="examples">
+    <li>
+      Bosques de pinos en el sureste de Estados Unidos, Chaparral en el sur de
+      California, el Mediterráneo...
+    </li>
+    <li>
+      Ejemplo económico: una acumulación de inventarios en una tienda hasta una
+      cierta cantidad, seguida de una venta para vender la mayoría de ellos.
+    </li>
+  </UList>
+
+  <UList slot="variables">
+    <VariableItem
+      v="G1"
+      desc="Cantidad de biomasa donde el fuego se enciende"
+    />
+    <VariableItem v="G2" desc="Cantidad de biomasa donde el fuego se apaga" />
+    <VariableItem v="TN" desc="Nutrientes totales" />
+    <VariableItem v="N" desc="Nutrientes en el suelo" />
+    <VariableItem v="F" desc="Proporción de nutrientes ligados al pasto" />
+    <VariableItem v="Q" desc="Biomasa" />
+    <VariableItem v="K.." desc="Coeficientes de interacción" />
+  </UList>
+
+  <p slot="ecuations">N = TN - F * Q</p>
+  <p slot="ecuations">R = I / (1 + K * N)</p>
+  <p slot="ecuations">DQ = K1 * N * R - K2 * Q; SI Q > G1 ENTONCES Q = G2</p>
+
+  <Ecuation ecuation="fire" slot="graph">
+    <InputNumber name="TN" label="Nutrientes Totales" value="100" />
+    <InputNumber
+      name="G2"
+      label="Cantidad de biomasa donde el fuego se apaga"
+      value="2000"
+    />
+    <InputNumber
+      name="T"
+      label="Tiempo máximo"
+      hideName={true}
+      value="320"
+      min="1"
+    />
+
+    <div slot="ecuation-without-grid">
+      <label for="A">¿Incendio activado?</label>
+      <input type="checkbox" name="A" id="A" checked />
+    </div>
+  </Ecuation>
+
+  <p slot="experiments">Piensa en un bosque.</p>
+
+  <UList slot="experiments">
+    <li>
+      ¿El bosque pulsa más o menos si se agregan más nutrientes al sistema?
+    </li>
+    <li>
+      ¿Qué pasa si el fuego lo apagan los bomberos para que se detenga antes?
+    </li>
+    <li>
+      ¿Qué sucede con el sistema si el fuego se mantiene completamente fuera?
+    </li>
+  </UList>
+</EcuationLayout>

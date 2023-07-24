@@ -9,9 +9,10 @@ import { NetProd } from "./netprod";
 import { OpenAq } from "./openaq";
 import { Pulse } from "./pulse";
 import { Saltmrsh } from "./saltmrsh";
+import { Fire } from "./fire";
 
 interface ShowData {
-  [key: string]: Function
+  [key: string]: Function;
 }
 
 const showData: ShowData = {
@@ -26,6 +27,7 @@ const showData: ShowData = {
   "openaq": OpenAq,
   "pulse": Pulse,
   "saltmrsh": Saltmrsh,
+  "fire": Fire,
 }
 
 export function show(id: string) {
