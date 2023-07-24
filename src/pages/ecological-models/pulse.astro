@@ -1,0 +1,64 @@
+---
+import EcuationLayout from "../../layouts/EcuationLayout.astro";
+import Ecuation from "@components/Ecuation.astro";
+import InputNumber from "@components/InputNumber.astro";
+import UList from "@components/UList.astro";
+import VariableItem from "@components/VariableItem.astro";
+---
+
+<EcuationLayout
+  title="Pulsar y reciclar"
+  simulation="El gráfico muestra los cambios de Q (azul) y C (rosa) durante un período de tiempo."
+  diagram="/img/pulse.gif"
+  originalLink="https://www.unicamp.br/fea/ortega/java/pulse.htm"
+>
+  <p slot="description">
+    Este modelo de pulso es un modelo de producción-consumo con
+    retroalimentación de reciclaje. Es más realista para los sistemas
+    productor-consumidor que el modelo presa-depredador. El reciclaje de las
+    salidas de consumo son utilizados por la producción. Los materiales totales
+    (TM) conservados en el sistema incluyen los disponibles para la producción
+    (M), los incorporados en los productores (F1*Q) y los de los consumidores
+    (F2*C).
+  </p>
+
+  <UList slot="examples">
+    <li>
+      Pastizales con saltamontes que tienen un modo de consumo lento y un modo
+      de consumo frenético.
+    </li>
+    <li>Agricultura itinerante de "tala y quema" en el Amazonas.</li>
+    <li>Historia geológica del mundo (combustibles fósiles).</li>
+  </UList>
+
+  <UList slot="variables">
+    <VariableItem v="M" desc="Materiales disponibles para la producción" />
+    <VariableItem v="Q" desc="Materiales almacenados en los productores" />
+    <VariableItem v="C" desc="Materiales almacenados en los consumidores" />
+    <VariableItem v="K1..K4" desc="Factores de interacción" />
+  </UList>
+
+  <p slot="ecuations">M = TM - F1 * Q - F2 * C</p>
+  <p slot="ecuations">DQ = K1 * E * M - K2 * Q - K3 * C * C * Q</p>
+  <p slot="ecuations">DC = K2 * Q + K3 * Q * C * C - K4 * C</p>
+
+  <Ecuation ecuation="pulse" slot="graph">
+    <InputNumber name="TM" label="Nutrientes totales" value="200" />
+    <InputNumber name="K2" label="Interacción 1" value="1" />
+    <InputNumber name="K4" label="Interacción 2" value="20" />
+  </Ecuation>
+
+  <p slot="experiments">
+    Piense en una granja de agricultura itinerante en la selva tropical:
+  </p>
+  <UList slot="experiments">
+    <li>
+      Si se añadieran fertilizantes a la granja, ¿qué efecto tendría eso en la
+      pulsación del sistema?.
+    </li>
+    <li>
+      Experimente con los factores K2 y K4 e intente explicar lo que
+      representan.
+    </li>
+  </UList>
+</EcuationLayout>
