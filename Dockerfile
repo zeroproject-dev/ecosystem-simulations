@@ -1,10 +1,10 @@
 FROM node:19-alpine3.16 AS build
-ARG VITE_BASE_URL=./
+ARG ASTRO_BASE_URL=./
 WORKDIR /app
 COPY package.json .
 RUN npm install --prefer-offline --no-audit --progress=false
 COPY . .
-RUN npm run build -- --base ${VITE_BASE_URL}
+RUN npm run build -- --base ${ASTRO_BASE_URL}
 
 # Stage 2
 
