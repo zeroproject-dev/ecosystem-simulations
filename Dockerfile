@@ -1,5 +1,5 @@
 FROM node:19-alpine3.16 AS build
-ARG ASTRO_BASE_URL=./
+ARG ASTRO_BASE_URL=/ecosystem-simulations/
 WORKDIR /app
 COPY package.json .
 RUN npm install --prefer-offline --no-audit --progress=false
