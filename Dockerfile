@@ -1,10 +1,10 @@
 FROM node:19-alpine3.16 AS build
-ARG ASTRO_BASE_URL=/ecosystem-simulations/
+ARG BASE_URL=./
 WORKDIR /app
 COPY package.json .
 RUN npm install --prefer-offline --no-audit --progress=false
 COPY . .
-RUN npm run build -- --base ${ASTRO_BASE_URL} && find dist -type f -name '*.html' -exec \
+RUN npm run build -- --base ${BASE_URL} && find dist -type f -name '*.html' -exec \
   sed -i \
   -e 's|href="/\./|href="./|g' \
   -e 's|src="/\./|src="./|g' \
